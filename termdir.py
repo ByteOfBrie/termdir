@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-Trying to create a script that can find the current directory of a shell's process
+find the current directory of a shell's process in i3 window manager
 works for shells like konsole that support tabs
 '''
 
