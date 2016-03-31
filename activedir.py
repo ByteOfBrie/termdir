@@ -1,14 +1,11 @@
 #!/usr/bin/python
 '''
 Trying to create a script that can find the current directory of a shell's process
+works for shells like konsole that support tabs
 '''
 
 import i3
 import subprocess
-import argparse
-
-PARSER = argparse.ArgumentParser(description='Get PID of focused window\'s child')
-PARSER.add_argument('-s', help='Put in a shell other than bash, zsh, or fish')
 
 SHELLS = ['zsh', 'bash', 'fish']
 
@@ -19,7 +16,6 @@ def main():
     '''
     focused = i3.filter(focused=True)[0]
     window_id = focused['window']
-    # win_name = focused['window_properties']['class']  possibly needed, disabled for now
     parent_pid_cmd = 'xprop -id {} | grep PID'.format(window_id)
     parent_pid_line = subprocess.run(parent_pid_cmd, shell=True,
                                      stdout=subprocess.PIPE).stdout.decode('utf-8').strip()
