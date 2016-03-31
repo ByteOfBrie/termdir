@@ -16,10 +16,13 @@ def main():
     '''
     focused = i3.filter(focused=True)[0]
     window_id = focused['window']
+    if window_id is None:
+        #no focused window
+        return
     parent_pid_cmd = 'xprop -id {} | grep PID'.format(window_id)
     parent_pid_line = subprocess.run(parent_pid_cmd, shell=True,
                                      stdout=subprocess.PIPE).stdout.decode('utf-8').strip()
-    parent_pid = int(parent_pid_line.split(' ')[-1])   #removes the junk and gets an int PID
+    parent_pid = int(parent_pid_line.split(' ')[-1])
     child_pid_cmd = 'ps --ppid {}'.format(parent_pid)
     child_pids_sub = subprocess.run(child_pid_cmd, shell=True, stdout=subprocess.PIPE)
     child_pids = child_pids_sub.stdout.decode('utf-8').split('\n')[1:-1]
