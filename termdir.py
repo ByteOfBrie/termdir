@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 '''
 Trying to create a script that can find the current directory of a shell's process
 works for shells like konsole that support tabs
