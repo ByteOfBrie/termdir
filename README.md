@@ -6,6 +6,7 @@ Similar to https://github.com/schischi/xcwd but designed to work for application
 ## requirements
 
 i3-py       https://github.com/ziberna/i3-py
+
 python3     (python2 support should be easy)
 
 ## installation
