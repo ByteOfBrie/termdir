@@ -18,8 +18,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import i3
 import subprocess
+import os
 
 SHELLS = ['zsh', 'bash', 'fish']
+
+DEFAULT_DIR = os.path.expanduser('~')
 
 def main():
     '''
@@ -30,6 +33,7 @@ def main():
     window_id = focused['window']
     if window_id is None:
         #no focused window
+        print(DEFAULT_DIR)
         return
     parent_pid_cmd = 'xprop -id {} | grep PID'.format(window_id)
     parent_pid_line = subprocess.run(parent_pid_cmd, shell=True,
@@ -48,6 +52,8 @@ def main():
                                          stdout=subprocess.PIPE).stdout.decode('utf-8')
         child_path = child_path_line[len(str(child_pid))+2:]
         print(child_path)
+    else:
+        print(DEFAULT_DIR)
 
 
 
